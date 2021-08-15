@@ -11,7 +11,7 @@
     <header>Library</header>
     <main>
         <div class="btn">
-            <button>Add new book</button>
+            <button class="AddBookButton">Add new book</button>
         </div>
         <div class="book">
             <div class="card">
@@ -27,17 +27,19 @@
     <div class="hidden visiblity">
         <h1>Add new Book</h1>
         <form>
-            <input type="text" placeholder="Title" required>
-            <input type="text" placeholder="Author" required>
-            <input type="number" placeholder="Pages" required>
+            <input type="text" class="titleInput" placeholder="Title" required>
+            <input type="text" class="authorInput" placeholder="Author" required>
+            <input type="number" class="pagesInput" placeholder="Pages" required>
             <br>
             <div class="checkboxInput">
                 <label>You have read it</label>
-                <input type="checkbox" checked>
+                <input type="checkbox" class="checkedInput" checked>
             </div>
             <br>
             <button type="submit" class="submit">Submit</button>
         </form>
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
