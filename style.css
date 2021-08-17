@@ -75,6 +75,7 @@ button{
     border: none;
     background-color: red;
     color: white;
+    z-index: 5;
 }
 .hidden{
     position: fixed;
