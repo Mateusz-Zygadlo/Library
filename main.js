@@ -10,7 +10,7 @@ const authorInput = document.querySelector('.authorInput');
 const pagesInput = document.querySelector('.pagesInput');
 const checkedInput = document.querySelector('.checkedInput');
 
-let deleteButton = document.getElementsByClassName('Delete');
+let deleteButtons = document.querySelectorAll('.delete');
 
 const readButton = document.querySelectorAll('.Read');
 
@@ -31,17 +31,13 @@ function Book(title, author, pages, checked) {
 function addToLibrary(){
     const newbook = new Book(titleInput.value, authorInput.value, pagesInput.value, checkedInput.checked);
     Library.push(newbook);
-    books.textContent = '';
     createCards();
+    console.log(Library);
 }
 
-[...deleteButton].forEach(p => {
-    p.addEventListener('click', (e) => {
-        console.log(e);
-    })
-})
-
 function createCards(){
+    books.textContent = '';
+
     Library.forEach((result) => {
         const card = document.createElement('div');
         card.dataset.id = result.id;
@@ -68,22 +64,30 @@ function createCards(){
         card.appendChild(buttonRead);
 
         const buttonDelete = document.createElement('button');
-        buttonDelete.classList.add('Delete');
-        buttonDelete.textContent = 'Delete';
+        buttonDelete.classList.add('delete');
+        buttonDelete.textContent = 'delete';
         card.appendChild(buttonDelete);
 
         books.appendChild(card);
+
     });
 }
 
+document.addEventListener('click', (e) => {
+    if(e.target.classList == 'delete'){
+        const id = e.target.parentNode.dataset.id;
+        const result = Library.findIndex(item => item.id == id);
+        Library.splice(result, 1);
+        e.target.parentNode.remove();
+    }else if(e.target.classList == 'Read'){
+        console.log(true);
+    }
+})
 
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     addToLibrary();
-
-    deleteButton = document.getElementsByClassName('Delete');
-    console.log(deleteButton);
 
     visiblityBackground.classList.add('visiblity');
     visiblityForm.classList.add('visiblity');
