@@ -3,16 +3,11 @@ const visiblityForm = document.querySelector('.hidden');
 const visiblityBackground = document.querySelector('.background');
 
 const form = document.querySelector('form');
-const submit = document.querySelector('.submit');
 
 const titleInput = document.querySelector('.titleInput');
 const authorInput = document.querySelector('.authorInput');
 const pagesInput = document.querySelector('.pagesInput');
 const checkedInput = document.querySelector('.checkedInput');
-
-let deleteButtons = document.querySelectorAll('.delete');
-
-const readButton = document.querySelectorAll('.Read');
 
 let books = document.querySelector('.book');
 
@@ -32,7 +27,6 @@ function addToLibrary(){
     const newbook = new Book(titleInput.value, authorInput.value, pagesInput.value, checkedInput.checked);
     Library.push(newbook);
     createCards();
-    console.log(Library);
 }
 
 function createCards(){
@@ -55,7 +49,7 @@ function createCards(){
 
         const pages = document.createElement('div');
         pages.classList.add('pages');
-        pages.textContent = result.pages;
+        pages.textContent = result.pages + ' pages';
         card.appendChild(pages);
 
         const buttonRead = document.createElement('button');
@@ -80,7 +74,17 @@ document.addEventListener('click', (e) => {
         Library.splice(result, 1);
         e.target.parentNode.remove();
     }else if(e.target.classList == 'Read'){
-        console.log(true);
+        if(e.target.textContent == 'true'){
+            const id = true;
+            const result = Library.findIndex(item => item.checked == id);
+            Library[result].checked = false;
+            e.target.textContent = 'false';
+        }else if(e.target.textContent == 'false'){
+            const id = false;
+            const result = Library.findIndex(item => item.checked == id);
+            Library[result].checked = true;
+            e.target.textContent = 'true';
+        }
     }
 })
 
