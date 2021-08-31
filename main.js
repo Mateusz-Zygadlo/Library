@@ -15,12 +15,14 @@ const inputs = document.querySelectorAll('input');
 
 const Library = [];
 
-function Book(title, author, pages, checked) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.checked = checked;
-    this.id = new Date().valueOf();
+class Book{
+    constructor(title, author, pages, checked) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.checked = checked;
+        this.id = new Date().valueOf();
+    }
 }
 
 function addToLibrary(){
